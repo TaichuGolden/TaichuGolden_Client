@@ -1,2 +1,3 @@
 # TaichuGolden_Client
-client
+
+Help: [Tag: quick-start | TaichuGolden](https://read.taichugolden.com/tags/quick-start/)
