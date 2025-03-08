@@ -27,9 +27,9 @@ class MacdCross:
             if cross < 0:
                 base.close(
                     side='SHORT',
-                    quantity=1,
+                    quantity_to_close=1,
                     order_type='limit',
-                    price=base.data['CLOSE'].iloc[-1],
+                    exit_price=base.data['CLOSE'].iloc[-1],
                     send_msg=True,
                     timestamp=base.data.index[-1],
                     timeout='1d',
