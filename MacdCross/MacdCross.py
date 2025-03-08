@@ -14,6 +14,16 @@ class MacdCross:
                 ) 
             cross = base.tools.cross(macd, signal)
             if cross > 0:
+                base.close(
+                    side='SHORT',
+                    quantity_to_close=1,
+                    order_type='limit',
+                    exit_price=base.data['CLOSE'].iloc[-1],
+                    send_msg=True,
+                    timestamp=base.data.index[-1],
+                    timeout='1d',
+                    additional_params=None
+                )
                 base.open(
                     side='LONG',
                     quantity=1,
@@ -26,10 +36,20 @@ class MacdCross:
                 )
             if cross < 0:
                 base.close(
-                    side='SHORT',
+                    side='LONG',
                     quantity_to_close=1,
                     order_type='limit',
                     exit_price=base.data['CLOSE'].iloc[-1],
+                    send_msg=True,
+                    timestamp=base.data.index[-1],
+                    timeout='1d',
+                    additional_params=None
+                )
+                base.open(
+                    side='SHORT',
+                    quantity=1,
+                    order_type='limit',
+                    price=base.data['CLOSE'].iloc[-1],
                     send_msg=True,
                     timestamp=base.data.index[-1],
                     timeout='1d',
