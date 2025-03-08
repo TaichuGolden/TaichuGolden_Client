@@ -25,7 +25,7 @@ class MacdCross:
                     additional_params=None
                 )
             if cross < 0:
-                base.open(
+                base.close(
                     side='SHORT',
                     quantity=1,
                     order_type='limit',
