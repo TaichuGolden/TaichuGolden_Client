@@ -4,3 +4,4 @@
 - Strategy Type: LLM strategy
 - Strategy Details: 
 Taichu golden LLM1 strategy
+[Info](https://blog.taichugolden.com/zh-CN/blog/taichugoldenllm1/)
