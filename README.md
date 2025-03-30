@@ -1,3 +1,4 @@
 # TaichuGolden_Client
 
-Help: [Tag: quick-start | TaichuGolden](https://read.taichugolden.com/tags/quick-start/)
+Help: [TaichuGolden's Docs](https://doc.taichugolden.com/)
+

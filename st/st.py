@@ -1,6 +1,9 @@
-async def loop(base):
+class MacdCross:
+    def __init__(self,base):
+        base.balance(cash=500000,leverage=10,fee_rate=0.00015,margin_rate=0.1)
+
+    async def on_tick(self,base):
         def profit_positions(price_list,profit_levels):
-            
             if len(profit_levels['LONG']['prices'])>0:
                 if price_list[-1] >= profit_levels['LONG']['prices'][0]:
                     quant = profit_levels['LONG']['quantities'][0]
@@ -68,19 +71,13 @@ async def loop(base):
             (base.data['CLOSE'].iloc[-1] > atr_stop[-1]) or \
             ((trend_flag[-1] == 3) and (base.data['CLOSE'].iloc[-1] > pricebymacdpr[-1]))  
 
-        
-
         if not base.long_amount or base.long_amount == 0:
             base.TrailingTakeProfit.update_profit_levels(isbuy=True,reset=True,condition=True)
         if not base.short_amount or base.short_amount == 0:
             base.TrailingTakeProfit.update_profit_levels(isbuy=False,reset=True,condition=True)
         
         profit_positions(price_list=base.data['CLOSE'],profit_levels=base.TrailingTakeProfit.take_profit_levels)
-        # print('base.TrailingTakeProfit.take_profit_levels:',base.TrailingTakeProfit.take_profit_levels)
-        # print('long_price:',base.long_price)
-        # print('long_amount:',base.long_amount)
-        # print('short_amount:',base.short_amount)
-        # print('short_price:',base.short_price)
+    
         if close_long_condition and base.long_amount and base.long_amount>0:
             
             base.close(
